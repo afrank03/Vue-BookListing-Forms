@@ -55,6 +55,10 @@ export default {
       searchInput: ""
     };
   },
+  components: {
+    BookItem,
+    BookForm
+  },
   computed: {
     filteredBooks () {
       // eventually this should go to vuex store, once it's intorduced.
@@ -70,10 +74,6 @@ export default {
           .match(this.searchInput.toLowerCase());
       });
     }
-  },
-  components: {
-    BookItem,
-    BookForm
   },
   methods: {
     appendBook (bookData) {
