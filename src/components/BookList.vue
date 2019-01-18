@@ -1,9 +1,14 @@
 <template>
   <div>
     <h1>{{title}}</h1>
+    <input
+      type="text"
+      v-model="searchInput"
+      placeholder="Search books"
+    />
     <ul>
       <book-item
-        v-for='book in books'
+        v-for='book in searchedBooks'
         :key='book.id'
         :book='book'
       ></book-item>
@@ -30,7 +35,6 @@
 </template>
 
 <script>
-console.log(123);
 import _ from "lodash"; // Is not needed, but here do to tutorial autocheck faliure.
 import BookItem from "./BookItem";
 import BookForm from "./BookForm";
@@ -47,13 +51,23 @@ export default {
         { title: "Amusing Ourselves to Death", author: "Neil Postman", finishedReading: true, ownership: "borrowed" }
       ],
       filters: ["bought", "borrowed"],
-      holding: "bought"
+      holding: "bought",
+      searchInput: ""
     };
   },
   computed: {
     filteredBooks () {
+      // eventually this should go to vuex store, once it's intorduced.
       return this.books.filter((book) => {
         return book.ownership === this.holding;
+      });
+    },
+    searchedBooks () {
+      return this.books.filter((book) => {
+        return book
+          .title
+          .toLowerCase()
+          .match(this.searchInput.toLowerCase());
       });
     }
   },
