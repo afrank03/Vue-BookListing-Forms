@@ -60,20 +60,20 @@ export default {
     BookForm
   },
   computed: {
-    filteredBooks () {
-      // eventually this should go to vuex store, once it's intorduced.
-      return this.books.filter((book) => {
-        return book.ownership === this.holding;
-      });
-    },
-    searchedBooks () {
-      return this.books.filter((book) => {
-        return book
-          .title
-          .toLowerCase()
-          .match(this.searchInput.toLowerCase());
-      });
-    }
+    // filteredBooks () {
+    //   // eventually this should go to vuex store, once it's intorduced.
+    //   return this.books.filter((book) => {
+    //     return book.ownership === this.holding;
+    //   });
+    // },
+    // searchedBooks () {
+    //   return this.books.filter((book) => {
+    //     return book
+    //       .title
+    //       .toLowerCase()
+    //       .match(this.searchInput.toLowerCase());
+    //   });
+    // }
   },
   methods: {
     appendBook (bookData) {
